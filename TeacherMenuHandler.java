@@ -65,6 +65,53 @@ public class TeacherMenuHandler {
         }else {
             System.out.println("The teacher was not inserted yet into database");
         }
+    }
 
+    public static void searchForTeacher(Connection connection, String firstName){
+        String sql = "SELECT * FROM teachers WHERE first_name = ?";
+        ResultSet rs;
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, firstName);
+            rs = stmt.executeQuery();
+
+            while (rs.next()){
+                String firstNameToDisplay = rs.getString("first_name");
+                String lastNameToDisplay = rs.getString("last_name");
+                Integer ageOfTeacher = rs.getInt("age");
+                String tipToDisplay = rs.getString("tip");
+
+                System.out.println("The results of this search are: ");
+                System.out.println("First name of teacher: " + firstNameToDisplay);
+                System.out.println("Last name of teacher: " + lastNameToDisplay);
+                System.out.println("Age of teacher: " + ageOfTeacher);
+                System.out.println("Tip of teacher: " + tipToDisplay);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteATeacherFromKeyboard(Connection connection,String firstName,String lastName){
+        String sql = "DELETE * FROM teachers WHERE first_name = ? AND last_name = ?";
+        int rs = 0;
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, firstName);
+            stmt.setString(2, lastName);
+            rs = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (rs == 1){
+            System.out.println("The teacher was deleted succesufully from our DB ");
+        }else {
+            System.out.println("The teachet was not deleted yet from our DB ");
+        }
     }
 }

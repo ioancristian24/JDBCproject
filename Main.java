@@ -98,5 +98,22 @@ public class Main {
 
             TeacherMenuHandler.insertNewTeacherFromKeyboard(connection,firstName,lastName,age,tip);
         }
+
+        if (choice.equals("8")){
+            System.out.println("Please type the first name of the teacher: ");
+            System.out.println("First Name: ");
+            String firstName = scanner.nextLine();
+            TeacherMenuHandler.searchForTeacher(connection, firstName);
+        }
+
+        if (choice.equals("10")){
+            System.out.println("Please type the first name of the teacher that you want to delete:");
+            String firstName = scanner.nextLine();
+
+            System.out.println("Please type the last name of the teacher that you want to delete: ");
+            String lastName = scanner.nextLine();
+
+            TeacherMenuHandler.deleteATeacherFromKeyboard(connection, firstName, lastName);
+        }
     }
 }
