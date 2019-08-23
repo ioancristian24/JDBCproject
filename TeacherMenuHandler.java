@@ -95,7 +95,7 @@ public class TeacherMenuHandler {
     }
 
     public static void deleteATeacherFromKeyboard(Connection connection,String firstName,String lastName){
-        String sql = "DELETE * FROM teachers WHERE first_name = ? AND last_name = ?";
+        String sql = "DELETE FROM teachers WHERE first_name = ? AND last_name = ?";
         int rs = 0;
 
         try {

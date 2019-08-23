@@ -32,6 +32,14 @@ public class Main {
         System.out.println("9.  Add teacher ");
         System.out.println("10. Delete teacher from keyboard ");
 
+        System.out.println("======== Groups Menu ==========");
+        System.out.println("Please select one option: ");
+        System.out.println("11. Display groups table ");
+        System.out.println("12. Add group from keyboard ");
+        System.out.println("13. Display info about selected group ");
+        System.out.println("14. Add group ");
+        System.out.println("15. Delete group from keyboard ");
+
         Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine();
         System.out.println(" Your choice " + choice);
@@ -114,6 +122,33 @@ public class Main {
             String lastName = scanner.nextLine();
 
             TeacherMenuHandler.deleteATeacherFromKeyboard(connection, firstName, lastName);
+        }
+
+        if (choice.equals("11")){
+            GroupMenuHandler.displayGroupTable(connection);
+        }
+
+        if (choice.equals("14")){
+            GroupMenuHandler.insertNewGroup(connection);
+        }
+
+        if (choice.equals("12")){
+            System.out.println("Please type the name of the group: ");
+            String name = scanner.nextLine();
+            GroupMenuHandler.insertNewGroupFromKeyboard(connection, name);
+        }
+
+        if (choice.equals("13")){
+            System.out.println("Please type the name of the group: ");
+            System.out.println("Name of group: ");
+            String name = scanner.nextLine();
+            GroupMenuHandler.searchForGroup(connection,name);
+        }
+
+        if (choice.equals("15")){
+            System.out.println("Please type the name of group that you want to delete: ");
+            String name = scanner.nextLine();
+            GroupMenuHandler.deleteAGroupFromKeyboard(connection,name);
         }
     }
 }
